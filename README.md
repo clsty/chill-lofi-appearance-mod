@@ -1,178 +1,167 @@
-﻿# Eku Skin Mod for [Game Name]
+﻿# Custom Skin Mod for Chill with You : Lo-Fi Story
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![BepInEx](https://img.shields.io/badge/BepInEx-5.4.x-green.svg)](https://github.com/BepInEx/BepInEx)
-[![Game Version](https://img.shields.io/badge/game-v1.0.4-orange.svg)](#compatibility)
-
-A character appearance replacement mod for [Game Name], featuring custom models with lilToon shader support.
-
-![Preview](docs/preview.png)  <!-- 添加截图 -->
-
+这是一个为 Chill with You : Lo-Fi Story 制作的角色外观替换 Mod，支持自定义 3D 模型。
+自带一只Eku，也可以替换为自己的模型（需要绑定游戏骨骼）。
 ---
 
-## ✨ Features
+## 📦 安装步骤
 
-- 🎨 **Custom Character Model**: Replace the default character with custom 3D models
-- 🎭 **Facial Expression Sync**: Automatic blend shape synchronization with game animations
-- 👓 **Accessory Control**: Toggle glasses and headphones via config file
-- 🖌️ **Shader Support**: Compatible with lilToon and URP Lit shaders
-- ⚙️ **Configurable**: Easy-to-edit configuration file
+### 环境要求
 
----
+* [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx/releases) 或更高版本。
 
-## 📦 Installation
+### 模组安装方法
 
-### Prerequisites
+1. **安装 BepInEx**
+* 从上方链接下载 BepInEx。
+* 解压至游戏根目录。
+* 运行一次游戏以生成 BepInEx 相关文件夹。
 
-- [BepInEx 5.4.x](https://github.com/BepInEx/BepInEx/releases) or higher
-- [Game Name] version 1.0.4 or compatible
 
-### Steps
+2. **安装 Mod**
+* 从 Release 下载最新版本的 Mod 压缩包。
+* 将 `EkuSkinMod` 文件夹解压至 `BepInEx/plugins/` 目录下。
+* 注意：**请将 `BepInEx/config/BepInEx.cfg` 中的 `HideManagerGameObject` 修改为 true**
+* 确保你的文件夹结构如下所示：
 
-1. **Install BepInEx**
-   - Download BepInEx from the link above
-   - Extract to your game's root directory
-   - Run the game once to generate BepInEx folders
 
-2. **Install the Mod**
-   - Download the latest release from [Releases](https://github.com/yourusername/yourrepo/releases)
-   - Extract `EkuSkinMod` folder to `BepInEx/plugins/`
-   - Your folder structure should look like:
-     ```
-     [Game Root]/
-     └── BepInEx/
-         └── plugins/
-             └── EkuSkinMod/
-                 ├── Cavi.AppearanceMod.dll
-                 ├── assets
-                 └── config.txt
-     ```
-
-3. **Launch the Game**
-   - The mod will load automatically
-   - Check `BepInEx/LogOutput.log` for any errors
-
----
-
-## ⚙️ Configuration
-
-Edit `BepInEx/plugins/EkuSkinMod/config.txt`:
 ```
-# Eku Skin Mod Configuration
-# Enable glasses (true=show, false=hide)
+[游戏根目录]/
+└── BepInEx/
+    └── plugins/
+        └── EkuSkinMod/
+            ├── Cavi.AppearanceMod.dll
+            ├── assets
+            └── config.txt
+
+```
+
+3. **启动游戏**
+* Mod 将会自动加载。
+* 如果遇到问题，请检查 `BepInEx/LogOutput.log` 文件。
+
+---
+
+## ⚙️ 配置文件
+
+编辑 `BepInEx/plugins/EkuSkinMod/config.txt`：
+
+```ini
+# Eku Skin Mod 配置文件
+# 是否显示眼镜 (true=显示, false=隐藏)
 ENABLE_GLASSES=false
+
+```
+
+---
+
+## 🎮 使用说明
+
+* 进入游戏后，角色模型会自动完成替换。
+* 可以在配置文件中切换配饰状态（修改后需重启游戏）。
+
+---
+
+## 🛠️ 从源码构建
+
+### 构建环境
+
+* Visual Studio 2019+ 或 Rider。
+* .NET Standard 2.1 SDK。
+* Unity Editor (用于打包 AssetBundle 资源文件)。
+
+### 构建步骤
+
+1. 克隆仓库：
+```bash
+git clone https://github.com/Cavibot/chill-lofi-appearance-mod.git
+cd 仓库名
+
 ```
 
 
----
-
-## 🎮 Usage
-
-- The character model is replaced automatically when entering a room
-- Facial expressions sync with game animations
-- Toggle glasses in the config file (requires restart)
-
----
-
-## 🛠️ Building from Source
-
-### Requirements
-
-- Visual Studio 2019+ or Rider
-- .NET Standard 2.1 SDK
-- Unity Editor (for creating AssetBundles)
-
-### Build Steps
-
-1. Clone the repository:
-git clone https://github.com/yourusername/yourrepo.git cd yourrepo
-
-
-2. Restore dependencies:
+2. 还原依赖项：
+```bash
 dotnet restore
 
+```
 
-3. Copy game assemblies:
-   - Copy the following DLLs from `[Game]/[Game]_Data/Managed/` to `libs/`:
-     - `Assembly-CSharp.dll`
-     - `UnityEngine.dll`
-     - `UnityEngine.CoreModule.dll`
-     - (Add other required DLLs)
 
-4. Build the project:
+3. 导入游戏程序集：
+* 从游戏的 `Chill With You_Data/Managed/` 目录中拷贝以下 DLL 文件到项目的 `libs/` 文件夹（需手动创建）：
+* `Assembly-CSharp.dll`
+* `UnityEngine.dll`
+* `UnityEngine.CoreModule.dll`
+* （以及其他报错提示缺失的 DLL）
 
+
+
+
+4. 执行构建：
+```bash
 dotnet build -c Release
 
-5. Output DLL will be in `bin/Release/netstandard2.1/`
+```
+
+
+5. 生成的 DLL 将位于 `bin/Release/netstandard2.1/` 目录下。
 
 ---
 
-## 📁 Project Structure
+## 📁 项目结构
 
-Cavi.AppearanceMod/ ├── Components/           # Unity components │   └── BlendShapeLinker.cs ├── Patches/             # Harmony patches │   └── CharacterPatches.cs ├── Utils/               # Utility classes │   └── ModLogger.cs ├── AppearancePlugin.cs  # Main plugin entry └── README.md
+```text
+Cavi.AppearanceMod/
+├── Components/           # Unity 组件逻辑 (如 BlendShapeLinker)
+│   └── BlendShapeLinker.cs
+├── Patches/              # Harmony 补丁逻辑 (核心 Hook 代码)
+│   └── CharacterPatches.cs
+├── Utils/                # 工具类与扩展方法
+│   └── TransformExtensions.cs
+├── AppearancePlugin.cs   # BepInEx 插件入口文件
+└── README.md
+
+```
+
+---
+
+## 🐛 常见问题排查
+
+### 模型没有出现
+
+* 检查 `BepInEx/LogOutput.log` 是否报错。
+* 确保 `assets` 资源文件存放在正确的插件目录下。
+* 核对游戏版本是否匹配。
 
 
 ---
 
----
+## 🤝 参与贡献
 
-## 🐛 Troubleshooting
+欢迎提交 Issue 或 Pull Request！
 
-### Model not appearing
-- Check `BepInEx/LogOutput.log` for errors
-- Ensure `assets` file exists in the mod folder
-- Verify game version compatibility
-
-### Pink materials
-- Check if URP Lit shader is available in the game
-- Verify AssetBundle was built correctly
-
-### Facial expressions not working
-- Check BlendShapeLinker component is attached
-- Verify blend shape names match between original and custom model
+1. Fork 本项目。
+2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)。
+3. 提交你的改动 (`git commit -m 'Add some AmazingFeature'`)。
+4. 推送到分支 (`git push origin feature/AmazingFeature`)。
+5. 开启一个 Pull Request。
 
 ---
 
-## 🤝 Contributing
+## 📜 许可协议
 
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+本项目基于 MIT 协议开源 - 详情请参阅  [LICENSE](LICENSE) 文件。
 
 ---
 
-## 📜 License
+## ⚠️ 免责声明
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🙏 Credits
-
-- **Game**: [Game Name] by [Developer]
-- **BepInEx**: [BepInEx Team](https://github.com/BepInEx/BepInEx)
-- **lilToon**: [lilxyzw](https://github.com/lilxyzw/lilToon)
-- **Model**: [Artist Name / Source]
+本 Mod 与游戏官方开发者无关。请自行承担使用风险。
 
 ---
 
-## ⚠️ Disclaimer
+## 🔄 更新日志
 
-This mod is not affiliated with or endorsed by the game's developers. Use at your own risk.
-
----
-
-## 📧 Contact
-
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Issues: [Report a bug](https://github.com/yourusername/yourrepo/issues)
+请参阅 [RELEASES.md](RELEASES.md) 查看版本历史。
 
 ---
-
-## 🔄 Changelog
-
-See [RELEASES.md](RELEASES.md) for version history.
