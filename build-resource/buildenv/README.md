@@ -16,8 +16,7 @@
 
 ```
 mokgamedir/
-├── BepInEx/
-│   └── core/          # BepInEx 核心 DLL（由 download-bepinex.sh 自动创建）
+├── BepInEx/           # 软链接到 ../assets/BepInEx_win_x64/BepInEx
 └── Chill With You_Data/
     └── Managed/       # 游戏和 Unity 引擎 DLL
         ├── Assembly-CSharp.dll     # 游戏代码（需手动提供或从游戏安装获取）
