@@ -40,7 +40,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.InputLegacyModule">
-			<HintPath>$(GamePath)\Chill With You_Data\Managed\UnityEngine.InputModule.dll</HintPath>
+			<HintPath>$(GamePath)\Chill With You_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.InputModule">
