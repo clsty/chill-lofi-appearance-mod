@@ -1,9 +1,13 @@
 ﻿# ============================================
 # 游戏和 BepInEx 引用（版权保护）
 # ============================================
-# 忽略所有 DLL，但保留说明文档
-libs/**/*.dll
-!libs/README.txt
+# 忽略 libs 目录（已移除）
+libs/
+
+# 忽略 build-resource 中的下载文件
+build-resource/buildenv/mokgamedir/
+build-resource/assets/BepInEx_win_x64/
+build-resource/assets/*.dll
 
 # ============================================
 # Visual Studio / Rider
