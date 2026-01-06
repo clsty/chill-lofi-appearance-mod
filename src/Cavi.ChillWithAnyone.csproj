@@ -16,6 +16,12 @@
 			<Private>False</Private>
 		</Reference>
 
+		<!-- Game Dependencies -->
+		<Reference Include="Assembly-CSharp">
+			<HintPath>$(GamePath)\Chill With You_Data\Managed\Assembly-CSharp.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+
 		<!-- Unity Dependencies -->
 		<Reference Include="UnityEngine">
 			<HintPath>$(GamePath)\Chill With You_Data\Managed\UnityEngine.dll</HintPath>
@@ -34,7 +40,7 @@
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.InputLegacyModule">
-			<HintPath>$(GamePath)\Chill With You_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+			<HintPath>$(GamePath)\Chill With You_Data\Managed\UnityEngine.InputModule.dll</HintPath>
 			<Private>False</Private>
 		</Reference>
 		<Reference Include="UnityEngine.InputModule">
@@ -43,14 +49,14 @@
 		</Reference>
 	</ItemGroup>
 
-	<!-- 构建后自动复制到游戏目录 -->
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="Exists('$(GamePath)')">
+	<!-- 构建后自动复制到游戏目录（仅 Windows，且需要存在 BepInEx\plugins 目录） -->
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="'$(OS)' == 'Windows_NT' AND Exists('$(GamePath)\BepInEx\plugins')">
 		<Message Importance="High" Text="正在复制到: $(GamePath)" />
 		<Exec Command="xcopy /Y /I &quot;$(TargetDir)Cavi.ChillWithAnyone.dll&quot; &quot;$(GamePath)\BepInEx\plugins\ChillWithAnyone\&quot;" />
 	</Target>
 
-	<!-- 路径不存在时的警告 -->
-	<Target Name="ValidateGamePath" BeforeTargets="PostBuild">
+	<!-- 路径不存在时的警告（仅 Windows） -->
+	<Target Name="ValidateGamePath" BeforeTargets="PostBuild" Condition="'$(OS)' == 'Windows_NT'">
 		<Warning Condition="!Exists('$(GamePath)')" Text="游戏路径不存在: $(GamePath) - 已跳过自动复制" />
 	</Target>
 

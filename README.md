@@ -68,45 +68,61 @@ ENABLE_GLASSES=false
 
 ### 构建环境
 
-* Visual Studio 2019+ 或 Rider。
-* .NET Standard 2.1 SDK。
-* Unity Editor (用于打包 AssetBundle 资源文件)。
+**Windows 用户：**
+* Visual Studio 2019+ 或 Rider
+* .NET SDK 6.0+
+
+**Linux 用户：**
+* Mono Complete (`sudo apt install mono-complete` on Debian/Ubuntu)
+* Make (`sudo apt install make`)
+* .NET SDK 6.0+ (用于下载 NuGet 包)
 
 ### 构建步骤
 
+#### 方法 1：使用 Makefile（推荐用于 Linux）
+
 1. 克隆仓库：
 ```bash
-git clone https://github.com/Cavibot/chill-with-anyone-mod.git
-cd chill-with-anyone-mod
-
+git clone https://github.com/clsty/chill-lofi-appearance-mod.git
+cd chill-lofi-appearance-mod
 ```
 
-
-2. 还原依赖项：
+2. 使用 Make 构建（需要指定游戏目录）：
 ```bash
-dotnet restore
+# 默认路径 (Linux Steam)
+make
 
+# 或者自定义游戏路径
+make GAME_ROOT="/path/to/Chill with You Lo-Fi Story"
 ```
 
+3. 生成的 DLL 将位于 `src/bin/Release/netstandard2.1/` 目录下。
 
-3. 导入游戏程序集：
-* 从游戏的 `Chill With You_Data/Managed/` 目录中拷贝以下 DLL 文件到项目的 `libs/` 文件夹（需手动创建）：
-* `Assembly-CSharp.dll`
-* `UnityEngine.dll`
-* `UnityEngine.CoreModule.dll`
-* （以及其他报错提示缺失的 DLL）
+#### 方法 2：使用 dotnet/Visual Studio（推荐用于 Windows）
 
-
-
-
-4. 执行构建：
+1. 克隆仓库：
 ```bash
-dotnet build -c Release
-
+git clone https://github.com/clsty/chill-lofi-appearance-mod.git
+cd chill-lofi-appearance-mod
 ```
 
+2. 使用 dotnet 构建（需要指定游戏目录）：
+```bash
+dotnet build -c Release /p:GamePath="C:\Program Files (x86)\Steam\steamapps\common\Chill with You Lo-Fi Story"
+```
 
-5. 生成的 DLL 将位于 `bin/Release/netstandard2.1/` 目录下。
+或在 Visual Studio 中：
+- 打开 `ChillWithAnyoneMod.sln`
+- 在项目属性或环境变量中设置 `GamePath` 为你的游戏安装路径
+- 构建解决方案
+
+3. 生成的 DLL 将位于 `src/bin/Release/netstandard2.1/` 目录下。
+
+### 注意事项
+
+* 现在**不再需要**手动复制 DLL 文件到 `libs/` 目录
+* 构建系统会自动从游戏目录引用所需的 DLL
+* CI/CD 构建会自动从 NuGet 和 GitHub 下载必要的依赖
 
 ---
 
