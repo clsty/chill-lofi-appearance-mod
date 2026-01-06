@@ -21,7 +21,7 @@
 
 2. **安装 Mod**
 * 从 Release 下载最新版本的 Mod 压缩包。
-* 将 `EkuSkinMod` 文件夹解压至 `BepInEx/plugins/` 目录下。
+* 将 `ChillWithAnyone` 文件夹解压至 `BepInEx/plugins/` 目录下。
 * 注意：**请将 `BepInEx/config/BepInEx.cfg` 中的 `HideManagerGameObject` 修改为 true**
 * 确保你的文件夹结构如下所示：
 
@@ -30,7 +30,7 @@
 [游戏根目录]/
 └── BepInEx/
     └── plugins/
-        └── EkuSkinMod/
+        └── ChillWithAnyone/
             ├── Cavi.ChillWithAnyone.dll
             ├── assets
             └── config.txt
@@ -45,10 +45,10 @@
 
 ## ⚙️ 配置文件
 
-编辑 `BepInEx/plugins/EkuSkinMod/config.txt`：
+编辑 `BepInEx/plugins/ChillWithAnyone/config.txt`：
 
 ```ini
-# Eku Skin Mod 配置文件
+# ChillWithAnyone 配置文件
 # 是否显示眼镜 (true=显示, false=隐藏)
 ENABLE_GLASSES=false
 ```
