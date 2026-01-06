@@ -45,6 +45,16 @@ jobs:
         if: steps.cache-bepinex.outputs.cache-hit != 'true'
         run: build-resource/buildenv/download-bepinex.sh
 
+      # Note: Assembly-CSharp.dll is game-specific and must be provided manually
+      # It should be committed to build-resource/buildenv/mokgamedir/Chill With You_Data/Managed/
+      # or provided through other means (GitHub Secrets, etc.)
+      - name: Check for Assembly-CSharp.dll
+        run: |
+          if [ ! -f "build-resource/buildenv/mokgamedir/Chill With You_Data/Managed/Assembly-CSharp.dll" ]; then
+            echo "警告: Assembly-CSharp.dll 未找到，构建可能失败"
+            echo "请参考 build-resource/buildenv/README.md 了解如何提供此文件"
+          fi
+
       - name: Build Cavi.ChillWithAnyone.dll
         run: |
           make GAME_ROOT="${{ github.workspace }}/build-resource/buildenv/mokgamedir"

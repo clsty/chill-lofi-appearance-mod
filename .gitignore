@@ -4,8 +4,11 @@
 # 忽略 libs 目录（已移除）
 libs/
 
-# 忽略 build-resource 中的下载文件
+# 忽略 build-resource 中的下载文件（但保留 Assembly-CSharp.dll 用于 CI）
 build-resource/buildenv/mokgamedir/
+!build-resource/buildenv/mokgamedir/Chill With You_Data/
+!build-resource/buildenv/mokgamedir/Chill With You_Data/Managed/
+!build-resource/buildenv/mokgamedir/Chill With You_Data/Managed/Assembly-CSharp.dll
 build-resource/assets/BepInEx_win_x64/
 build-resource/assets/*.dll
 
