@@ -73,9 +73,8 @@ ENABLE_GLASSES=false
 * .NET SDK 6.0+
 
 **Linux 用户：**
-* Mono Complete (`sudo apt install mono-complete` on Debian/Ubuntu)
 * Make (`sudo apt install make`)
-* .NET SDK 6.0+ (用于下载 NuGet 包)
+* .NET SDK 6.0+ (`sudo apt install dotnet-sdk-8.0` on Debian/Ubuntu)
 
 ### 构建步骤
 
@@ -122,6 +121,7 @@ dotnet build -c Release /p:GamePath="C:\Program Files (x86)\Steam\steamapps\comm
 
 * 现在**不再需要**手动复制 DLL 文件到 `libs/` 目录
 * 构建系统会自动从游戏目录引用所需的 DLL
+* **必须**拥有游戏安装才能成功构建（需要游戏的 Assembly-CSharp.dll）
 * CI/CD 构建会自动从 NuGet 和 GitHub 下载必要的依赖
 
 ---

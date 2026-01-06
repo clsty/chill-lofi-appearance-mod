@@ -17,10 +17,10 @@ jobs:
       - name: Checkout ChillWithAnyone
         uses: actions/checkout@v4
 
-      - name: Cache APT packages
-        uses: awalsh128/cache-apt-pkgs-action@v1
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          packages: mono-complete zip
+          dotnet-version: '8.0.x'
 
       - name: Cache Unity assemblies
         id: cache-unity
@@ -57,7 +57,7 @@ jobs:
 
       - name: Build Cavi.ChillWithAnyone.dll
         run: |
-          make GAME_ROOT="${{ github.workspace }}/build-resource/buildenv/mokgamedir"
+          dotnet build src/Cavi.ChillWithAnyone.csproj -c Release /p:GamePath="${{ github.workspace }}/build-resource/buildenv/mokgamedir"
           cp src/bin/Release/netstandard2.1/Cavi.ChillWithAnyone.dll build-resource/assets/
 
       - name: Zip Artifact

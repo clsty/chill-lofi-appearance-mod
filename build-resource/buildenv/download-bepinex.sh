@@ -24,8 +24,13 @@ if ! unzip -t bepinex.zip > /dev/null 2>&1; then
     rm bepinex.zip
     exit 1
 fi
-unzip -q bepinex.zip
+unzip -o -q bepinex.zip
 rm bepinex.zip
 echo "Extracted \"bepinex.zip\"."
+
+# Copy BepInEx core DLLs to mokgamedir for building
+echo "Copying BepInEx core DLLs to mokgamedir..."
+mkdir -p "${MOKGAME_DIR}/BepInEx/core"
+cp BepInEx/core/*.dll "${MOKGAME_DIR}/BepInEx/core/"
 
 echo "BepInEx setup complete!"
